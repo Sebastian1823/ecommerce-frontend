@@ -22,7 +22,7 @@ export default function ProductDetailClient({ id }) {
         }
 
         const data = await res.json();
-        setProduct(data);
+        setProduct(data.data);
       } catch (err) {
         setError(err.message);
       } finally {

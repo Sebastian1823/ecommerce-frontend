@@ -27,7 +27,7 @@ export default function ProductEditClient({ id }) {
         }
 
         const data = await res.json();
-        setProduct(data);
+        setProduct(data.data);
       } catch (err) {
         setError(err.message);
       } finally {

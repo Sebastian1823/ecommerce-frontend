@@ -124,16 +124,14 @@ export default function ProductDetailClient({ id }) {
               {/* Stock Badge */}
               <div className="mb-4">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${
-                    inStock
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${inStock
                       ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                       : 'bg-red-500/10 text-red-400 border border-red-500/20'
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`w-2 h-2 rounded-full ${
-                      inStock ? 'bg-emerald-400' : 'bg-red-400'
-                    }`}
+                    className={`w-2 h-2 rounded-full ${inStock ? 'bg-emerald-400' : 'bg-red-400'
+                      }`}
                   />
                   {inStock ? `${product.stock} unidades en stock` : 'Agotado'}
                 </span>

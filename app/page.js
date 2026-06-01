@@ -39,7 +39,7 @@ export default function HomePage() {
       }
 
       const data = await res.json();
-      setProducts(data);
+      setProducts(data.data); // ← CORREGIDO: extraer el array del objeto
     } catch (err) {
       setError(err.message);
     } finally {
@@ -59,7 +59,6 @@ export default function HomePage() {
     <>
       <Navbar />
       <main className="pt-24 sm:pt-28 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
             <span className="bg-gradient-to-r from-white via-blue-100 to-blue-400 bg-clip-text text-transparent">
@@ -72,7 +71,6 @@ export default function HomePage() {
           <div className="mt-4 h-1 w-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mx-auto" />
         </div>
 
-        {/* Error State */}
         {error && (
           <div className="max-w-md mx-auto mb-8 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
             <p className="text-red-400 font-medium">{error}</p>
@@ -85,7 +83,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Loading Skeletons */}
         {loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
@@ -94,7 +91,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading && !error && products.length === 0 && (
           <div className="text-center py-20">
             <div className="w-24 h-24 bg-slate-800/80 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -130,19 +126,18 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Product Grid */}
-        {!loading && !error && products.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onDelete={handleDelete}
-              />
-            ))}
-          </div>
-        )}
-      </main>
+      {!loading && !error && products.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
+      )}
+    </main >
     </>
   );
 }
